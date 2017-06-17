@@ -18,10 +18,9 @@
      > 
        
        <!-- 扫描文件(自动将service层注入) -->
-       <context:component-scan base-package="cn.edu.zzuli.*.service" />
+       <context:component-scan base-package="cn.edu.zzuli.emp.*.service.*" />
        <!-- 扫描文件(自动将dao层注入) -->
-       <context:component-scan base-package="cn.edu.zzuli.*.mapper" />
-       
+     <context:component-scan base-package="cn.edu.zzuli.emp.*.mapper" /> 
        <!-- 引入jdbc配置文件 -->
        <bean id="propertyConfigurer"
        		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -96,7 +95,7 @@
      	<!-- dao接口所在包名，spring会自动查找其下的类 -->
      	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
      		<property name="basePackage">
-     			<value>cn.edu.zzuli.*.mapper</value>
+     			<value>cn.edu.zzuli.emp.*.mapper</value>
      		</property>
      		<property name="sqlSessionFactoryBeanName">
      			<value>sqlSessionFactory</value>
@@ -145,7 +144,7 @@
      	<aop:config>
      		<!-- 进行回滚操作时回滚到service中的方法 -->
      		<aop:pointcut id="serviceOperation"
-     			expression="execution(* cn.edu.zzuli.*.service.*.*(..))" />
+     			expression="execution(* cn.edu.zzuli.emp.*.service.*.*(..))" />
      		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation"/>
      	</aop:config>
 </beans>

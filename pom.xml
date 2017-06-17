@@ -5,9 +5,9 @@
   
   <!-- 定义一个项目的基本坐标 -->
   <!-- 定义了项目属于哪个组 -->
-  <groupId>cn.edu.zzuli</groupId>
+  <groupId>com.ksxt</groupId>
   <!-- 定义了当前项目在组中唯一的ID -->
-  <artifactId>Test</artifactId>
+  <artifactId>ksxt</artifactId>
   
   <!-- 项目打包的格式，默认jar -->
   <packaging>war</packaging>
@@ -185,7 +185,7 @@
   </dependencies>
   
   <build>
-    <finalName>Test</finalName>
+    <finalName>ksxt</finalName>
   	  <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

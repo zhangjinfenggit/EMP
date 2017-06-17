@@ -18,9 +18,12 @@
 		<!-- 
 			扫描使用注解的包，包括子类
 		 -->
-		<context:component-scan base-package="cn.edu.zzuli.*.controller" />
-		<context:component-scan base-package="cn.edu.zzuli.util" />
-		
+		 <!-- 扫描controller注解 -->
+		<context:component-scan base-package="cn.edu.zzuli.emp.*.controller" />
+		<!-- 扫描统一异常处理注解处理器 -->
+		<context:component-scan base-package="cn.edu.zzuli.emp.exception" />
+		<!-- 扫描工具类注解 -->
+		<context:component-scan base-package="cn.edu.zzuli.emp.util" />
 		<!-- 
 			开启注解
 			相当于注册了DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapter
@@ -38,13 +41,12 @@
 		<mvc:resources mapping="/skins/**" location="/skins/" />
 		<mvc:resources mapping="/styles/**" location="/styles/" />
 		<mvc:resources mapping="/views/**" location="/views/" />
-		<mvc:resources mapping="/views/**" location="/views/" />
 		<mvc:resources mapping="/html/**" location="/html/" />
-		<!-- <mvc:resources mapping="/" location="/views/">
-		<mvc:resources mapping="/index.html"/>
-		<mvc:resources mapping="/laydate.dev.js"/>
-		<mvc:resources mapping="/manage.html"/> -->
 		
+		<!-- 定义拦截器 -->
+		<mvc:interceptors>
+			<bean class="cn.edu.zzuli.emp.interceptor.LoginInterceptor" />
+		</mvc:interceptors>
 		
 		<!-- 
 			定义视图解析器
