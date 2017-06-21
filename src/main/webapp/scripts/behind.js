@@ -30,26 +30,109 @@ function getDate() {
 function openadd(str) {
 	$("#myModalLabel").text(str);
 	$("#name").attr("readonly", false);
+	$("select").val("");
 	$("input").val("");
 	$("#addModal").modal("show");
 	$("#add").show();
 	$("#edt").hide();
 }
 
-function openedt(str) {
-	$("#myModalLabel").text(str);
+
+
+function openedtr(id){
+	$("#myModalLabel").text("修改培训信息");
 	$("#name").attr("readonly", true);
-	$("input").val("");
+	//var id = "";
+	$.ajax({
+		url: "getTrainByid",
+		timeout: 300000,
+		dataType: "json",
+		type: "post",
+		data: {
+			"id": id
+		},
+		success: function(data) {
+			
+			 $("#title").val(data.title);
+			  $("#description").val(data.description);
+			$("#teacher").val(data.teacher);
+			$("#time").val(data.time);
+			$("#tid").val(id);
+		}
+	})
+	
 	$("#addModal").modal("show");
-	$("#add").hide();
+	$("#edt").show();
+}
+	
+function openedtw(id){
+	
+	$("#myModalLabel").text("修改薪水信息");
+	$("#name").attr("readonly", true);
+	//var id = "";
+	$.ajax({
+		url: "getSalaryById",
+		timeout: 300000,
+		dataType: "json",
+		type: "post",
+		data: {
+			"id": id
+		},
+		success: function(data) {
+			
+			$("#wid").val(data.id);
+			 $("#wname").val(data.name);
+			 $("#wbsalary").val(data.bsalary);
+		 	$("#wgsalary").val(data.gsalary);
+		 	$("#wjbsalary").val(data.jbsalary);
+		 	$("#wjxsalary").val(data.jxsalary);
+		 	$("#wglsalary").val(data.glsalary);
+		}
+	})
+	
+	$("#addModal").modal("show");
 	$("#edt").show();
 }
 
-function opendel(){
+function openedt(id) {
+	$("#myModalLabel").text("修改员工信息");
+	$("#name").attr("readonly", true);
+	//var id = "";
+	$.ajax({
+		url: "getUserByid",
+		timeout: 300000,
+		dataType: "json",
+		type: "post",
+		data: {
+			"id": id
+		},
+		success: function(data) {
+			
+			$("#wname").val(data.name);
+			$("#wdept").val(data.dept);
+			$("input[name=sex][value="+data.sex+"]").attr("checked",'checked');
+			$("#wbirthday").val(data.birthday);
+			$("#weducation").val(data.education);
+			$("#waddress").val(data.address);
+			$("#wtel").val(data.tel);
+			$("#wposition").val(data.position);
+			$("#wid").val(data.id);
+		}
+	})
+	
+	$("#addModal").modal("show");
+	$("#edt").show();
+}
+
+function opendelTrain(id){
+	
+	$("#wdel").val(id);
+	
 	$("#delModal").modal("show");
 }
 
 function openadmin() {
+	
 	$("#adminModal").modal("show");
 }
 
@@ -117,7 +200,7 @@ function add() {
 //	})
 //}
 
-function edt() {
+/*function edt() {
 	if($("#userName").val() == "") {
 		layer.tips('不能为空', '#userName');
 		return;
@@ -154,7 +237,7 @@ function edt() {
 			load(curr);
 		}
 	})
-}
+}*/
 
 function del(userName) {
 	//询问框
@@ -179,3 +262,6 @@ function del(userName) {
 		//  layer.close();
 	});
 }
+
+
+

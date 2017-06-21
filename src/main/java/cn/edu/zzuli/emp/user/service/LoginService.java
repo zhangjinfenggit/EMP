@@ -1,9 +1,10 @@
 package cn.edu.zzuli.emp.user.service;
 
-import cn.edu.zzuli.emp.user.vo.User;
+import cn.edu.zzuli.emp.user.vo.Admin;
 
 public interface LoginService {
 
-	boolean login(User user);
+	Admin login(Admin admin) throws Exception;
 
+	boolean updatePwd(Admin admin) throws Exception;
 }

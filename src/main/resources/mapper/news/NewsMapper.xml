@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zzuli.emp.news.mapper.NewsMapper">
+	<select id="getNewsCount" parameterType="cn.edu.zzuli.emp.news.vo.News" resultType="int">
+		select count(*) from news where 1 = 1
+		<if test="id!=null and id>0">
+			and id = #{id}
+		</if>
+		<if test="title!=null and title!=''">
+			and title like '%${title}%'
+		</if>
+	</select>
+	<select id="listNews" resultType="cn.edu.zzuli.emp.news.vo.News" parameterType="map" >
+		select * from news  where 1 = 1
+		
+		<if test="news.id != null and news.id > 0">
+			and id = #{news.id}
+		</if>
+		<if test="news.title != null and news.title!=''">
+			and title like '%${news.title}%'
+		</if>
+		order by id
+		limit #{pageUtil.currPageIndex} , #{pageUtil.pageSize}
+		
+		
+	</select>
+	
+	<insert id="insertNews" parameterType="cn.edu.zzuli.emp.news.vo.News" >
+		insert into news(title,content,time) values(#{title},#{content},#{time})
+	</insert>
+	
+	<select id="int" resultType="cn.edu.zzuli.emp.news.vo.News">
+		select * from news where id = #{id}
+	</select>
+	
+	<delete id="delNewsByid" parameterType="int" >
+		delete from news where id = #{id}
+	</delete>
+</mapper>

@@ -4,9 +4,13 @@ public class User {
 
 	private int id;
 	private String name;
-	private String pwd;
-	private int role;
-	private int status;
+	private String sex;
+	private String birthday;
+	private String education;
+	private String address;
+	private String tel;
+	private String dept;
+	private String position;
 
 	public int getId() {
 		return id;
@@ -24,28 +28,60 @@ public class User {
 		this.name = name;
 	}
 
-	public String getPwd() {
-		return pwd;
+	public String getSex() {
+		return sex;
 	}
 
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 
-	public int getRole() {
-		return role;
+	public String getBirthday() {
+		return birthday;
 	}
 
-	public void setRole(int role) {
-		this.role = role;
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
 
-	public int getStatus() {
-		return status;
+	public String getEducation() {
+		return education;
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
+	public void setEducation(String education) {
+		this.education = education;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public String getDept() {
+		return dept;
+	}
+
+	public void setDept(String dept) {
+		this.dept = dept;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
 	}
 
 }

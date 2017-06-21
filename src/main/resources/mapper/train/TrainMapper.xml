@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zzuli.emp.train.mapper.TrainMapper" >
+	<select id="getTrainCount" resultType="int"  parameterType="cn.edu.zzuli.emp.train.vo.Train" >
+		select count(*) from train where 1 = 1
+		<if test="title != null and title !=''">
+			and title like '%${title}%'
+		</if> 
+	</select>
+	
+	<select id="listTrain" parameterType="map" resultType="cn.edu.zzuli.emp.train.vo.Train"  >
+		select * from train where 1 = 1
+			<if test="train.title != null and train.title !=''">
+				and title like '%${train.title}%'
+			</if> 
+			order by id
+		limit #{pageUtil.currPageIndex} , #{pageUtil.pageSize}
+	</select>
+	
+	<insert id="inertTrain" parameterType="cn.edu.zzuli.emp.train.vo.Train" >
+		insert into train (title,teacher,time,description) values(#{title},#{teacher},#{time},#{description})
+	</insert>
+	
+	<select id="getTrainById" resultType="cn.edu.zzuli.emp.train.vo.Train" parameterType="int" >
+		select * from train where id = #{id}
+	</select>
+	
+	<update id="updateTrain" parameterType="cn.edu.zzuli.emp.train.vo.Train">
+		update train set title=#{title},time=#{time},description=#{description},teacher=#{teacher} where id = #{id}
+	</update>
+	<delete id="delTrain" parameterType="int" >
+		delete from train where id = #{id}
+	</delete>
+</mapper>

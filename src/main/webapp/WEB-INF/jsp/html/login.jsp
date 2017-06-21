@@ -37,13 +37,13 @@
 					<form class="registerform" action="login" method="post" >
 						<div class="fm-item">
 							<label for="logonId" class="form-label">管理员登录：</label>
-							<input type="text" placeholder="请输入账号" maxlength="100" id="username" name="name" class="i-text" datatype="s6-18" errormsg="用户名至少6个字符,最多18个字符！">
+							<input type="text" placeholder="请输入账号" maxlength="100" id="username" value="admin"  name="account" class="i-text" datatype="s6-18" errormsg="用户名至少6个字符,最多18个字符！">
 							<div class="ui-form-explain"></div>
 						</div>
 
 						<div class="fm-item">
 							<label for="logonId" class="form-label">管理员密码：</label>
-							<input type="password" placeholder="请输入密码" maxlength="100" id="password" name="pwd" class="i-text" datatype="*6-16" nullmsg="请设置密码！" errormsg="密码范围在6~16位之间！">
+							<input type="password" placeholder="请输入密码" maxlength="100" id="password"  value="admin" name="pwd" class="i-text" datatype="*6-16" nullmsg="请设置密码！" errormsg="密码范围在6~16位之间！">
 							<div class="ui-form-explain"></div>
 						</div>
 						<div><label for="logonId" class="form-label">${mes }</label></div>

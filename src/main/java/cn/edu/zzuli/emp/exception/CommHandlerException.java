@@ -18,7 +18,7 @@ public class CommHandlerException {
 
 		ModelAndView model = new ModelAndView();
 
-		System.err.println(e.getMessage());
+		e.printStackTrace();
 		System.out.println("出错了。。。。。。");
 		return model;
 	}

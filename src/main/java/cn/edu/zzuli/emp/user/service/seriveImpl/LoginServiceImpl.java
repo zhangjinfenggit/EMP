@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import cn.edu.zzuli.emp.user.mapper.LoginMapper;
 import cn.edu.zzuli.emp.user.service.LoginService;
-import cn.edu.zzuli.emp.user.vo.User;
+import cn.edu.zzuli.emp.user.vo.Admin;
 
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -14,15 +14,20 @@ public class LoginServiceImpl implements LoginService {
 	@Resource
 	private LoginMapper loginMapper = null;
 
-	public boolean login(User user) {
+	public Admin login(Admin user) throws Exception {
 
-		User existUser = loginMapper.login(user);
+		return loginMapper.login(user);
+	}
 
-		if (existUser == null) {
-			return false;
+	public boolean updatePwd(Admin admin) throws Exception {
+
+		int flag = loginMapper.updatePwd(admin);
+
+		if (flag == 1) {
+			return true;
 		}
 
-		return true;
+		return false;
 	}
 
 }

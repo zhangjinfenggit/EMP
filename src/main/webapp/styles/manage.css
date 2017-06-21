@@ -26,9 +26,8 @@ input{
 	width: 180px;
 }
 .page {
-	position: absolute;
-	top:118px;
-	left:44%;
+	text-align: center;
+	padding-right: 100px;
 }
 .search {
 	position: absolute;

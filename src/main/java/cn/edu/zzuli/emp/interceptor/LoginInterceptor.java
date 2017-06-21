@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import cn.edu.zzuli.emp.user.vo.User;
+import cn.edu.zzuli.emp.user.vo.Admin;
 
 /**
  * 登录校验拦截器
@@ -21,11 +21,13 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 		String path = handler.toString().toLowerCase();
 
-		if (path.contains("login")) {
+		System.out.println(path);
+		if (path.contains("login") || path.contains("css") || path.contains("scripts") || path.contains("images")
+				|| path.contains("styles")) {
 			return true;
 		}
 
-		User user = (User) request.getSession().getAttribute("userLogin");
+		Admin user = (Admin) request.getSession().getAttribute("userLogin");
 		if (user == null) {
 			request.getRequestDispatcher("login").forward(request, response);
 			return false;

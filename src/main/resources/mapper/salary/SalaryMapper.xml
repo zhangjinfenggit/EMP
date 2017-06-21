@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zzuli.emp.salary.mapper.SalaryMapper" >
+	<select id="getSalaryCount" parameterType="cn.edu.zzuli.emp.salary.vo.Salary" resultType="int" >
+		select count(*) from salary where 1 = 1
+		<if test="eno != null and eno != ''">
+			and eno like '%${eno}%'
+		</if>
+	</select>
+	<select id="listSalary" parameterType="map" resultType="cn.edu.zzuli.emp.salary.vo.Salary" >
+		select * from salary  where 1 = 1
+		
+		<if test="salary.eno != null and salary.eno != ''">
+			and eno like '%${salary.eno}%'
+		</if>
+		order by id
+		limit #{pageUtil.currPageIndex} , #{pageUtil.pageSize}
+		
+	</select>
+
+	<insert id="insertSalary" parameterType="cn.edu.zzuli.emp.salary.vo.Salary" >
+		insert into salary (eno,name,bsalary,gsalary,jbsalary,jxsalary,glsalary) 
+		values(#{eno},#{name},#{bsalary},#{gsalary},#{jbsalary},#{jxsalary},#{glsalary});
+	</insert>
+	
+	<select id="getSalaryById" parameterType="int" resultType="cn.edu.zzuli.emp.salary.vo.Salary" >
+		select * from salary where id = #{id}
+	</select>
+	
+	<update id="updatetSalary" parameterType="cn.edu.zzuli.emp.salary.vo.Salary">
+		update salary set name = #{name},bsalary=#{bsalary},gsalary = #{gsalary}, jbsalary=#{jbsalary}, glsalary=#{glsalary},jxsalary =#{jxsalary} where id = #{id}
+	</update>
+	<delete id="delSalaryById" parameterType="int" >
+		delete from salary where id = #{id}
+	</delete>
+</mapper>

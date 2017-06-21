@@ -2,11 +2,12 @@ package cn.edu.zzuli.emp.user.mapper;
 
 import org.springframework.stereotype.Repository;
 
-import cn.edu.zzuli.emp.user.vo.User;
+import cn.edu.zzuli.emp.user.vo.Admin;
 
 @Repository
 public interface LoginMapper {
 
-	User login(User user);
+	Admin login(Admin admin) throws Exception;
 
+	int updatePwd(Admin admin) throws Exception;
 }
