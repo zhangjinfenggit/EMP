@@ -31,11 +31,18 @@
 		insert into news(title,content,time) values(#{title},#{content},#{time})
 	</insert>
 	
-	<select id="int" resultType="cn.edu.zzuli.emp.news.vo.News">
+	<select id="getNewsByid" parameterType="int" resultType="cn.edu.zzuli.emp.news.vo.News">
 		select * from news where id = #{id}
 	</select>
 	
 	<delete id="delNewsByid" parameterType="int" >
 		delete from news where id = #{id}
 	</delete>
+	<update id="updateNews" parameterType="cn.edu.zzuli.emp.news.vo.News">
+		update news set title=#{title},content=#{content},time=#{time} where id = #{id}
+	</update>
+	
+	<select id="getNews" resultType="cn.edu.zzuli.emp.news.vo.News" >
+		select * from news
+	</select>
 </mapper>

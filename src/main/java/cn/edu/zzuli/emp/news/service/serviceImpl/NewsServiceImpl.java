@@ -19,7 +19,7 @@ public class NewsServiceImpl implements NewsService {
 	private NewsMapper newsMapper;
 
 	@Override
-	public Map<String, Object> getNewsList(Map<String, Object> map) {
+	public Map<String, Object> getNewsList(Map<String, Object> map) throws Exception {
 
 		News news = (News) map.get("news");
 
@@ -34,7 +34,7 @@ public class NewsServiceImpl implements NewsService {
 		return map;
 	}
 
-	public boolean insertNews(News news) {
+	public boolean insertNews(News news) throws Exception {
 
 		int flag = newsMapper.insertNews(news);
 
@@ -45,13 +45,13 @@ public class NewsServiceImpl implements NewsService {
 	}
 
 	@Override
-	public News getNewsByid(int id) {
+	public News getNewsByid(int id) throws Exception {
 
 		return newsMapper.getNewsByid(id);
 	}
 
 	@Override
-	public boolean delNewsByid(int id) {
+	public boolean delNewsByid(int id) throws Exception {
 
 		int flag = newsMapper.delNewsByid(id);
 
@@ -60,6 +60,24 @@ public class NewsServiceImpl implements NewsService {
 		}
 
 		return false;
+	}
+
+	@Override
+	public boolean updateNews(News news) throws Exception {
+
+		int flag = newsMapper.updateNews(news);
+
+		if (flag == 1) {
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public List<News> getNews() throws Exception {
+
+		return newsMapper.getNews();
 	}
 
 }

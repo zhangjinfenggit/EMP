@@ -37,7 +37,7 @@ public class SalaryController {
 	 * @return
 	 */
 	@RequestMapping("jumpSalary")
-	public String jumpSalary(Salary salary, PageUtil pageUtil, HttpServletRequest request) {
+	public String jumpSalary(Salary salary, PageUtil pageUtil, HttpServletRequest request) throws Exception {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 
@@ -56,7 +56,7 @@ public class SalaryController {
 	}
 
 	@RequestMapping("insertSalary")
-	public String insertSalary(Salary salary) {
+	public String insertSalary(Salary salary) throws Exception {
 
 		boolean flag = salaryService.insertSalary(salary);
 		if (flag)
@@ -66,7 +66,7 @@ public class SalaryController {
 	}
 
 	@RequestMapping("getSalaryById")
-	public void getSalaryById(int id, HttpServletResponse response) {
+	public void getSalaryById(int id, HttpServletResponse response) throws Exception {
 		PrintWriter pw = null;
 		Salary salary = null;
 		try {
@@ -85,7 +85,7 @@ public class SalaryController {
 
 	@RequestMapping("updatetSalary")
 
-	public String updatetSalary(Salary salary) {
+	public String updatetSalary(Salary salary) throws Exception {
 
 		boolean flag = salaryService.updatetSalary(salary);
 
@@ -96,7 +96,7 @@ public class SalaryController {
 	}
 
 	@RequestMapping("delSalary")
-	public String delSalaryById(int id) {
+	public String delSalaryById(int id) throws Exception {
 		boolean flag = salaryService.delSalaryById(id);
 
 		if (flag)

@@ -21,7 +21,7 @@ public class PageUtil implements Serializable {
 	private int currPageIndex; // 当前页的索引
 	// 从第几条数据开始限制 例如 limit currPageIndex ,pageSize;currPageIndex就是查询的起点
 
-	private int pageSize = 2;// 每页显示多少条
+	private int pageSize = 20;// 每页显示多少条
 
 	private List<Integer> eachPage; // 显示导航栏
 

@@ -33,4 +33,7 @@
 	<delete id="delTrain" parameterType="int" >
 		delete from train where id = #{id}
 	</delete>
+	<select id="getTrains" resultType="cn.edu.zzuli.emp.train.vo.Train" >
+		select * from train 
+	</select>
 </mapper>

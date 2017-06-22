@@ -33,7 +33,7 @@ public class TrainController {
 	private TrainService trainService;
 
 	@RequestMapping("jumpTrain")
-	public String jumpTrain(Train train, PageUtil pageUtil, HttpServletRequest request) {
+	public String jumpTrain(Train train, PageUtil pageUtil, HttpServletRequest request) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		map.put("train", train);
@@ -51,7 +51,7 @@ public class TrainController {
 	}
 
 	@RequestMapping("inertTrain")
-	private String inertTrain(Train train, HttpServletRequest request) {
+	private String inertTrain(Train train, HttpServletRequest request) throws Exception {
 
 		boolean flag = trainService.inertTrain(train);
 		if (flag) {
@@ -61,7 +61,7 @@ public class TrainController {
 	}
 
 	@RequestMapping("getTrainByid")
-	public void getTrainById(int id, HttpServletResponse response) {
+	public void getTrainById(int id, HttpServletResponse response) throws Exception {
 		PrintWriter pw = null;
 		Train train = null;
 		try {
@@ -81,7 +81,7 @@ public class TrainController {
 
 	@RequestMapping("updateTrain")
 
-	public String updateTrain(Train train, HttpServletRequest request) {
+	public String updateTrain(Train train, HttpServletRequest request) throws Exception {
 		boolean flag = trainService.updateTrain(train);
 		if (flag) {
 			return "redirect:jumpTrain";
@@ -91,13 +91,22 @@ public class TrainController {
 
 	@RequestMapping("delTrain")
 
-	public String delTrain(int id) {
+	public String delTrain(int id) throws Exception {
 
 		boolean flag = trainService.delTrain(id);
 		if (flag) {
 			return "redirect:jumpTrain";
 		}
 		throw new CustomExceprion("删除信息失败");
+	}
+
+	@RequestMapping("showTrain")
+	public String showTrain(int id, HttpServletRequest request) throws Exception {
+
+		Train train = trainService.getTrainById(id);
+
+		request.setAttribute("train", train);
+		return "showTrain";
 	}
 
 }

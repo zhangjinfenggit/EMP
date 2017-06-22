@@ -85,6 +85,7 @@ public class UserController {
 	}
 
 	/**
+	 * 根据ID删除信息
 	 * 
 	 * @param id
 	 * @return
@@ -100,6 +101,14 @@ public class UserController {
 		throw new CustomExceprion("删除失败！！");
 	}
 
+	/**
+	 * 
+	 * @param request
+	 * @param user
+	 * @param pageUtil
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("listUser")
 	public String listUser(HttpServletRequest request, User user, PageUtil pageUtil) throws Exception {
 
@@ -116,6 +125,32 @@ public class UserController {
 		request.setAttribute("PageUtil", ((PageUtil) data.get("pageUtil")));
 
 		return "WEB-INF/jsp/html/worker";
+	}
+
+	/**
+	 * 
+	 * @param request
+	 * @param user
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("updateUser")
+	public String updateUser(HttpServletRequest request, User user) throws Exception {
+
+		boolean flag = userService.updateUser(user);
+
+		if (flag) {
+			return "redirect:listUser";
+		}
+		throw new CustomExceprion("更新失败！！");
+
+	}
+
+	@RequestMapping("Test")
+	public void test() throws Exception {
+
+		int a = 10 / 0;
+
 	}
 
 }

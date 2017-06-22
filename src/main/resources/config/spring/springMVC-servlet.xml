@@ -42,6 +42,8 @@
 		<mvc:resources mapping="/styles/**" location="/styles/" />
 		<mvc:resources mapping="/views/**" location="/views/" />
 		<mvc:resources mapping="/html/**" location="/html/" />
+		<mvc:resources mapping="/bootstrap/**" location="/bootstrop/" />
+		<mvc:resources mapping="/ckeditor/**" location="/ckeditor/" />
 		
 		<!-- 定义拦截器 -->
 		<mvc:interceptors>

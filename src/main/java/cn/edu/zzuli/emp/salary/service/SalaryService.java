@@ -11,14 +11,14 @@ import cn.edu.zzuli.emp.salary.vo.Salary;
  */
 public interface SalaryService {
 
-	Map<String, Object> getNewsList(Map<String, Object> map);
+	Map<String, Object> getNewsList(Map<String, Object> map) throws Exception;
 
-	boolean insertSalary(Salary salary);
+	boolean insertSalary(Salary salary) throws Exception;
 
-	Salary getSalaryById(int id);
+	Salary getSalaryById(int id) throws Exception;
 
-	boolean updatetSalary(Salary salary);
+	boolean updatetSalary(Salary salary) throws Exception;
 
-	boolean delSalaryById(int id);
+	boolean delSalaryById(int id) throws Exception;
 
 }

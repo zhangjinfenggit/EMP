@@ -43,7 +43,10 @@
 		order by id
 		
 		limit #{pageUtil.currPageIndex} , #{pageUtil.pageSize}
-		
-		
 	</select>
+	
+	<update id="updateUser" parameterType="cn.edu.zzuli.emp.user.vo.User">
+		update user set name = #{name},sex =#{sex} , birthday=#{birthday},education=#{education},address=#{address},tel=#{tel},dept=#{dept},position=#{position}
+	 where id = #{id}
+	</update>
 </mapper>

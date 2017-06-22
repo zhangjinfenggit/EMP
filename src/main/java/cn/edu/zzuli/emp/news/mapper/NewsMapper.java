@@ -15,14 +15,18 @@ import cn.edu.zzuli.emp.news.vo.News;
 @Repository
 public interface NewsMapper {
 
-	public int getNewsCount(News news);
+	public int getNewsCount(News news) throws Exception;
 
-	public List<News> listNews(Map<String, Object> map);
+	public List<News> listNews(Map<String, Object> map) throws Exception;
 
-	public int insertNews(News news);
+	public int insertNews(News news) throws Exception;
 
-	public News getNewsByid(int id);
+	public News getNewsByid(int id) throws Exception;
 
-	public int delNewsByid(int id);
+	public int delNewsByid(int id) throws Exception;
+
+	public int updateNews(News news) throws Exception;
+
+	public List<News> getNews() throws Exception;
 
 }

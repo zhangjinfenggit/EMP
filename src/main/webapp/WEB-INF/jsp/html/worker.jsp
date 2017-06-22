@@ -1,4 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=utf-8"
+﻿<%@page import="java.util.Date"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -7,6 +8,9 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+		<script src="bootstrap/js/jquery.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
 		<link href="styles/behind.css" rel="stylesheet" />
 		<link href="styles/manage.css" rel="stylesheet" />
 		<title>企业信息管理平台-职员信息</title>
@@ -32,7 +36,7 @@
 		<div class="nav">
 			<ul class="breadcrumb">
 				<li>
-					<a href="#"><img src="images/home.png" />首页</a> <span class="divider">>></span></li>
+					<a href="index"><img src="images/home.png" />首页</a> <span class="divider">>></span></li>
 				<li class="active"></li>
 
 			</ul>
@@ -62,6 +66,9 @@
 								<div class="accordion-inner">
 									<a href="jumpTrain"><img class="left-icon-child" src="images/03.png" /><span class="left-body"> 职员培训</span></a>
 								</div>
+								<div class="accordion-inner">
+									<a href="jumpEditor"><img class="left-icon-child" src="images/03.png" /><span class="left-body"> 新闻编辑</span></a>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -71,8 +78,8 @@
 					<div class="container-fluid">
 						<div class="row-fluid">
 							<div class="add">
-								<a class="btn btn-success" onclick="openadd('新增职员');">新增</a>
-								<a class="btn btn-success">打印</a>
+								<a class="btn btn-success" onclick="openaddEmp('新增职员');">新增</a>
+								<a class="btn btn-success" onclick="printed()">打印</a>
 							</div>
 							<div class="search">
 								<input type="text" id="search" placeholder="Search" value="${searchName }" class="seartext" />
@@ -87,8 +94,8 @@
 												<th width="10%">姓名</th>
 												<th width="5%">性别</th>
 												<th width="10%">生日</th>
-												<th width="5%">学历</th>
-												<th width="25%">住址</th>
+												<th width="10%">学历</th>
+												<th width="20%">住址</th>
 												<th width="10%">电话号码</th>
 												<th width="10%">部门</th>
 												<th width="10%">职位</th>
@@ -103,14 +110,14 @@
 													<td width="10%">${user.name }</td>
 													<td width="5%">${user.sex }</td>
 													<td width="10%">${user.birthday }</td>
-													<td width="5%">${user.education }</td>
-													<td width="25%">${user.address }</td>
+													<td width="10%">${user.education }</td>
+													<td width="20%">${user.address }</td>
 													<td width="10%">${user.tel }</td>
 													<td width="10%">${user.dept }</td>
 													<td width="10%">${user.position }</td>
 													<td width="15%">
-														<a class="btn" onclick="openedt('${user.id}');">修改</a>&nbsp;&nbsp;
-														<a class="btn" onclick="opendel('${user.id}');">删除</a>
+														<a class="btn" onclick="openedtemp('${user.id}');">修改</a>&nbsp;&nbsp;
+														<a class="btn" onclick="opendelemp('${user.id}');">删除</a>
 													</td>
 												</tr>
 											</c:forEach>
@@ -271,6 +278,48 @@
 								<a href="listUser?currPage=${PageUtil.pageCount }"><img src="images/11.png" title="尾页" /></a>
 							</div>
 						</div>
+						
+						<div style="display: none;" id="printModal">
+                                    	<center>
+                                        	<h3>员工信息详表</h3>
+                                        </center>
+                                        <div style="width: 20%; float: right;">
+                                        	<span>日期：<%=(new Date().toLocaleString()).substring(0, 9) %></span>
+                                        </div>
+                                        <table class="table table-condensed table-bordered table-hover tab">
+										<thead>
+											<tr>
+												<th width="5%">序号</th>
+												<th width="10%">姓名</th>
+												<th width="5%">性别</th>
+												<th width="10%">生日</th>
+												<th width="10%">学历</th>
+												<th width="15%">住址</th>
+												<th width="10%">电话号码</th>
+												<th width="10%">部门</th>
+												<th width="10%">职位</th>
+											</tr>
+										</thead>
+										<tbody id="tbody">
+											<c:forEach items="${users }" var="user" varStatus="stutus" >
+												<tr>
+												
+													<td width="5%">${stutus.index + 1 }</td>
+													<td width="10%">${user.name }</td>
+													<td width="5%">${user.sex }</td>
+													<td width="10%">${user.birthday }</td>
+													<td width="10%">${user.education }</td>
+													<td width="15%">${user.address }</td>
+													<td width="10%">${user.tel }</td>
+													<td width="10%">${user.dept }</td>
+													<td width="10%">${user.position }</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+										</tbody>
+									</table>
+                             </div>
+						
 					</div>
 				</div>
 			</div>
@@ -296,13 +345,13 @@
 				var address = document.getElementById("waddress").value;
 				var tel = document.getElementById("wtel").value;
 				var position = document.getElementById("wposition").value;
-			    var sex  = $('input[type="radio"]:checked').val(); //获取被选中Radio的Value值
-			   
+			    var sex  = $('input[type="radio"]:checked').val(); //获取被选中Radio的Value
 			     if(id!='' && id !=null ){
 			    	
-			    	location.href = "updateUser?name="+name+"&sex="+sex+"&dept="+dept+"&birthday="+birthday
+			    	
+			    	 location.href = "updateUser?name="+name+"&sex="+sex+"&dept="+dept+"&birthday="+birthday
 			    			+"&education="+education+"&address="+address+"&tel="+tel
-			    			+"&position="+position;
+			    			+"&position="+position+"&id="+id; 
 			    }else{
 			    	
 			    	location.href = "inertUser?name="+name+"&sex="+sex+"&dept="+dept+"&birthday="+birthday
@@ -313,9 +362,15 @@
 				
 			}
 			
-			function DelUser(){
+			function opendelemp(id){
 				
-				location.href = "delUserByid?id="+$("#wdel").val();
+				var flag = confirm("你确定要删除么？");
+				
+				if(flag){
+					
+					location.href = "delUserByid?id="+id;
+				}
+				
 			}
 			function searchInf(){
 				
@@ -324,8 +379,14 @@
 				location.href = "listUser?name="+name;
 				
 			}
+			function printed() {
+				document.body.innerHTML = document.getElementById("printModal").innerHTML;
+				window.print();
+				location.reload();
+			}
+			
 			laydate({
-				elem: '#birthday'
+				elem: '#wbirthday'
 			});
 		</script>
 	</body>

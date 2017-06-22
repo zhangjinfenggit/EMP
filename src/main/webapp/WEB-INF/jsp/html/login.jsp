@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:if test="${sessionScope.userLogin!=null }">
+		<script type="text/javascript">
+			document.location="toMain";
+		</script>
+</c:if>
+<<c:if test="${sessionScope.userLogin==null }">
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -26,9 +33,9 @@
 		<div class="banner">
 			
 			<div id="KinSlideshow">
-				<a href="#"><img src="images/bg.png" alt="多年的经营过程中，不断优化货源渠道，使产品价格更具竞争力！" width="720" height="400" /></a>
-				<a href="#"><img src="images/bg.png" alt="多年的经营过程中，不断优化货源渠道，使产品价格更具竞争力！" width="720" height="400" /></a>
-				<a href="#"><img src="images/bg.png" alt="多年的经营过程中，不断优化货源渠道，使产品价格更具竞争力！" width="720" height="400" /></a>
+				<a href="#"><img src="images/bg2.jpg" alt="多年的经营过程中，不断优化货源渠道，使产品价格更具竞争力！" width="720" height="400" /></a>
+				<a href="#"><img src="images/bg2.jpg" alt="多年的经营过程中，不断优化货源渠道，使产品价格更具竞争力！" width="720" height="400" /></a>
+				<a href="#"><img src="images/bg2.jpg" alt="多年的经营过程中，不断优化货源渠道，使产品价格更具竞争力！" width="720" height="400" /></a>
 			</div>
 
 			<div class="login-aside">
@@ -59,3 +66,4 @@
 	</body>
 
 </html>
+</c:if>

@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
 		return userMapper.getUserList();
 	}
 
-	public boolean inertUser(User user) {
+	public boolean inertUser(User user) throws Exception {
 
 		int flag = userMapper.inertUser(user);
 
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 		return false;
 	}
 
-	public User getUserById(int id) {
+	public User getUserById(int id) throws Exception {
 
 		return userMapper.getUserById(id);
 	}
@@ -63,6 +63,15 @@ public class UserServiceImpl implements UserService {
 		map.put("users", users);
 
 		return map;
+	}
+
+	public boolean updateUser(User user) throws Exception {
+		int flag = userMapper.updateUser(user);
+
+		if (flag == 1) {
+			return true;
+		}
+		return false;
 	}
 
 }

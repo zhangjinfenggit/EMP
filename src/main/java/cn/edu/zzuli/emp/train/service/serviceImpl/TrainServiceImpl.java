@@ -19,7 +19,7 @@ public class TrainServiceImpl implements TrainService {
 	private TrainMapper trainMapper;
 
 	@Override
-	public Map<String, Object> getTrainList(Map<String, Object> map) {
+	public Map<String, Object> getTrainList(Map<String, Object> map) throws Exception {
 		Train train = (Train) map.get("train");
 
 		int Usercount = trainMapper.getTrainCount(train);
@@ -36,7 +36,7 @@ public class TrainServiceImpl implements TrainService {
 	}
 
 	@Override
-	public boolean inertTrain(Train train) {
+	public boolean inertTrain(Train train) throws Exception {
 
 		int flag = trainMapper.inertTrain(train);
 
@@ -48,13 +48,13 @@ public class TrainServiceImpl implements TrainService {
 	}
 
 	@Override
-	public Train getTrainById(int id) {
+	public Train getTrainById(int id) throws Exception {
 
 		return trainMapper.getTrainById(id);
 	}
 
 	@Override
-	public boolean updateTrain(Train train) {
+	public boolean updateTrain(Train train) throws Exception {
 
 		int flag = trainMapper.updateTrain(train);
 
@@ -66,7 +66,7 @@ public class TrainServiceImpl implements TrainService {
 	}
 
 	@Override
-	public boolean delTrain(int id) {
+	public boolean delTrain(int id) throws Exception {
 
 		int flag = trainMapper.delTrain(id);
 
@@ -75,5 +75,11 @@ public class TrainServiceImpl implements TrainService {
 		}
 
 		return false;
+	}
+
+	@Override
+	public List<Train> getTrains() throws Exception {
+
+		return trainMapper.getTrains();
 	}
 }

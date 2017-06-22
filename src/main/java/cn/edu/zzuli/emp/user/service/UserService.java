@@ -24,7 +24,7 @@ public interface UserService {
 	 * @param user
 	 * @return
 	 */
-	boolean inertUser(User user);
+	boolean inertUser(User user) throws Exception;
 
 	/**
 	 * 根据ID查询信息
@@ -32,7 +32,7 @@ public interface UserService {
 	 * @param id
 	 * @return
 	 */
-	User getUserById(int id);
+	User getUserById(int id) throws Exception;
 
 	/**
 	 * 根据ID删除信息
@@ -41,5 +41,7 @@ public interface UserService {
 	 * @return
 	 */
 	boolean delUserByid(int id) throws Exception;
+
+	boolean updateUser(User user) throws Exception;
 
 }

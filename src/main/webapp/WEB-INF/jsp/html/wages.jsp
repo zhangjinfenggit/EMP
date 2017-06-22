@@ -32,7 +32,7 @@
 		<div class="nav">
 			<ul class="breadcrumb">
 				<li>
-					<a href="#"><img src="images/home.png" />首页</a> <span class="divider">>></span></li>
+					<a href="index"><img src="images/home.png" />首页</a> <span class="divider">>></span></li>
 				<li class="active"></li>
 
 			</ul>
@@ -51,7 +51,7 @@
 							</div>
 							<div id="collapseOne" class="accordion-body collapse in">
 								<div class="accordion-inner">
-									<a href="jumpSalary"><img class="left-icon-child" src="images/07.png" /><span class="left-body"> 新闻公告</span></a>
+									<a href="jumpNews"><img class="left-icon-child" src="images/07.png" /><span class="left-body"> 新闻公告</span></a>
 								</div>
 								<div class="accordion-inner">
 									<a href=listUser><img class="left-icon-child" src="images/01.png" /><span class="left-body"> 职员信息</span></a>
@@ -61,6 +61,9 @@
 								</div>
 								<div class="accordion-inner">
 									<a href="jumpTrain"><img class="left-icon-child" src="images/03.png" /><span class="left-body"> 职员培训</span></a>
+								</div>
+								<div class="accordion-inner">
+									<a href="jumpEditor"><img class="left-icon-child" src="images/03.png" /><span class="left-body"> 新闻编辑</span></a>
 								</div>
 							</div>
 						</div>

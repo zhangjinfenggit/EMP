@@ -23,7 +23,7 @@ public class SalaryServiceImpl implements SalaryService {
 	@Resource
 	private SalaryMapper salaryMapper;
 
-	public Map<String, Object> getNewsList(Map<String, Object> map) {
+	public Map<String, Object> getNewsList(Map<String, Object> map) throws Exception {
 
 		Salary salary = (Salary) map.get("salary");
 
@@ -42,7 +42,7 @@ public class SalaryServiceImpl implements SalaryService {
 	}
 
 	@Override
-	public boolean insertSalary(Salary salary) {
+	public boolean insertSalary(Salary salary) throws Exception {
 
 		salary.setEno(System.currentTimeMillis() + "");
 		int flag = salaryMapper.insertSalary(salary);
@@ -54,13 +54,13 @@ public class SalaryServiceImpl implements SalaryService {
 	}
 
 	@Override
-	public Salary getSalaryById(int id) {
+	public Salary getSalaryById(int id) throws Exception {
 
 		return salaryMapper.getSalaryById(id);
 	}
 
 	@Override
-	public boolean updatetSalary(Salary salary) {
+	public boolean updatetSalary(Salary salary) throws Exception {
 
 		int flag = salaryMapper.updatetSalary(salary);
 
@@ -71,7 +71,7 @@ public class SalaryServiceImpl implements SalaryService {
 	}
 
 	@Override
-	public boolean delSalaryById(int id) {
+	public boolean delSalaryById(int id) throws Exception {
 		int flag = salaryMapper.delSalaryById(id);
 
 		if (flag == 1) {

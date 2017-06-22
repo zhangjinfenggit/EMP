@@ -20,6 +20,7 @@ public class CommHandlerException {
 
 		e.printStackTrace();
 		System.out.println("出错了。。。。。。");
+		model.setViewName("error");
 		return model;
 	}
 }

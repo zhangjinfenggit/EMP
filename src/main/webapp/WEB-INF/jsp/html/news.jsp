@@ -18,21 +18,20 @@
 			<label class="logo-title">企业信息管理平台</label>
 			<ul class="inline">
 				<li>
-					<img src="images/06.png" />&nbsp;&nbsp;欢迎您，Admin
+					<img src="images/06.png" />&nbsp;&nbsp;欢迎您，${sessionScope.userLogin.name }
 				</li>
 				<li class="dropdown">
 					<a class="dropdown-toggle mymsg" onclick="openadmin();"><img src="images/04.png" />&nbsp;&nbsp;修改信息</a>
 				</li>
 				<li>
-					<a class="loginout" href="manage.html"><img src="images/05.png" />&nbsp;&nbsp;退出</a>
+					<a class="loginout" href="logout"><img src="images/05.png" />&nbsp;&nbsp;退出</a>
 				</li>
 			</ul>
-		</div>
 
 		<div class="nav">
 			<ul class="breadcrumb">
 				<li>
-					<a href="#"><img src="images/home.png" />首页</a> <span class="divider">>></span></li>
+					<a href="index"><img src="images/home.png" />首页</a> <span class="divider">>></span></li>
 				<li class="active"></li>
 
 			</ul>
@@ -62,6 +61,9 @@
 								<div class="accordion-inner">
 									<a href="jumpTrain"><img class="left-icon-child" src="images/03.png" /><span class="left-body"> 职员培训</span></a>
 								</div>
+								<div class="accordion-inner">
+									<a href="jumpEditor"><img class="left-icon-child" src="images/03.png" /><span class="left-body"> 新闻编辑</span></a>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -71,7 +73,7 @@
 					<div class="container-fluid">
 						<div class="row-fluid">
 							<div class="add">
-								<a class="btn btn-success" onclick="openadd('新增公告');">新增</a>
+								<a class="btn btn-success" onclick="openadd('新增公告')">新增</a>
 							</div>
 							<div class="search">
 								<input type="text" placeholder="Search" class="seartext" id="searchName" value="${searchName }" /> <a class="btn btn-success" onclick="searchNewsName()">搜索</a>
@@ -96,8 +98,8 @@
 													<td width="10%">${news.time }</td>
 													<td width="55%">${news.content }</td>
 													<td width="15%">
-														<a class="btn" onclick="openedt('修改公告');">修改</a>&nbsp;&nbsp;
-														<a class="btn" onclick="opendel(${news.id});">删除</a>
+														<a class="btn" onclick="openedtnews('${news.id}');">修改</a>&nbsp;&nbsp;
+														<a class="btn" onclick="opendelnews('${news.id}');">删除</a>
 													</td>
 												</tr>
 											</tbody>
@@ -132,12 +134,12 @@
 												<textarea name="content" id="ncontent" style="height:200px;width:205px;resize: none;"></textarea>
 											</div>
 										</div>
+										<input type="hidden" id="nid" />
 									</form>
 								</div>
 								
 								<div class="modal-footer">
 									<button class="btn btn-primary" id="add" onclick="addnews();">保存</button>
-									<button class="btn btn-primary" id="edt" onclick="edtnews();">保存</button>
 									<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
 								</div>
 							</div>
@@ -226,13 +228,20 @@
 				var title = $("#ntitle").val();
 				var content = $("#ncontent").val();
 				var time = $("#ntime").val();
+				var id = $("#nid").val();
 				
-				location.href="insertNews?title="+title+"&content="+content+"&time="+time;
+				if(id==null || id==''){
+					location.href="insertNews?title="+title+"&content="+content+"&time="+time;
+				}else{
+					location.href="updateNews?title="+title+"&content="+content+"&time="+time+"&id="+id;
+				}
+				
+				
 			}
 			function edtnews(){
 				
 			}
-			function opendel(id){
+			function opendelnews(id){
 				
 				var v = confirm("你确定要删除么？");
 				if(v){
@@ -240,7 +249,7 @@
 				}
 			}
 			laydate({
-				elem: '#date'
+				elem: '#ntime'
 			});
 		</script>
 	</body>

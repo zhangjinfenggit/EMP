@@ -37,7 +37,7 @@ public class NewsController {
 	 * @return
 	 */
 	@RequestMapping("jumpNews")
-	public String jumpNews(News news, PageUtil pageUtil, HttpServletRequest request) {
+	public String jumpNews(News news, PageUtil pageUtil, HttpServletRequest request) throws Exception {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 
@@ -56,7 +56,7 @@ public class NewsController {
 	}
 
 	@RequestMapping("insertNews")
-	public String insertNews(News news, HttpServletRequest request) {
+	public String insertNews(News news, HttpServletRequest request) throws Exception {
 
 		boolean flag = newsService.insertNews(news);
 
@@ -67,7 +67,7 @@ public class NewsController {
 	}
 
 	@RequestMapping("getNewsByid")
-	public void getNewsByid(int id, HttpServletResponse response) {
+	public void getNewsByid(int id, HttpServletResponse response) throws Exception {
 
 		PrintWriter pw = null;
 		News news = null;
@@ -87,10 +87,29 @@ public class NewsController {
 
 	@RequestMapping("delNewsByid")
 
-	public String delNewsByid(int id) {
+	public String delNewsByid(int id) throws Exception {
 
 		boolean flag = newsService.delNewsByid(id);
 		return "redirect:jumpNews";
+	}
+
+	@RequestMapping("updateNews")
+	public String updateNews(News news, HttpServletRequest request) throws Exception {
+
+		boolean flag = newsService.updateNews(news);
+
+		if (flag)
+			return "redirect:jumpNews";
+
+		throw new CustomExceprion("添加失败");
+	}
+
+	@RequestMapping("showNews")
+	public String showNews(int id, HttpServletRequest request) throws Exception {
+
+		News news = newsService.getNewsByid(id);
+		request.setAttribute("news", news);
+		return "showNews";
 	}
 
 }

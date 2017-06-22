@@ -31,13 +31,47 @@ function openadd(str) {
 	$("#myModalLabel").text(str);
 	$("#name").attr("readonly", false);
 	$("select").val("");
-	$("input").val("");
+	
 	$("#addModal").modal("show");
 	$("#add").show();
 	$("#edt").hide();
 }
 
+function openaddEmp(str){
+	
+	$("#myModalLabel").text(str);
+	$("#name").attr("readonly", false);
+	$("select").val("");
+	
+	$("#addModal").modal("show");
+	$("#add").show();
+	$("#edt").hide();
+}
 
+function openedtnews(id){
+	$("#myModalLabel").text("修改公告");
+	$("#name").attr("readonly", true);
+	//var id = "";
+	$.ajax({
+		url: "getNewsByid",
+		timeout: 300000,
+		dataType: "json",
+		type: "post",
+		data: {
+			"id": id
+		},
+		success: function(data) {
+			
+			$("#ntitle").val(data.title);
+			$("#ncontent").val(data.content);
+			$("#ntime").val(data.time);
+			$("#nid").val(id);
+		}
+	})
+	
+	$("#addModal").modal("show");
+	$("#edt").show();
+}
 
 function openedtr(id){
 	$("#myModalLabel").text("修改培训信息");
@@ -94,7 +128,7 @@ function openedtw(id){
 	$("#edt").show();
 }
 
-function openedt(id) {
+function openedtemp(id) {
 	$("#myModalLabel").text("修改员工信息");
 	$("#name").attr("readonly", true);
 	//var id = "";
