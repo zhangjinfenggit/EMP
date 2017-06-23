@@ -110,7 +110,7 @@
 													<td width="10%">${salary.jbsalary }</td>
 													<td width="10%">${salary.jxsalary }</td>
 													<td width="10%">${salary.glsalary }</td>
-													<td width="10%">${salary.glsalary +salary.bsalary+salary.gsalary+salary.jbsalary+jxsalary}</td>
+													<td width="10%">${salary.glsalary +salary.bsalary+salary.gsalary+salary.jbsalary+salary.jxsalary}</td>
 													<td width="10%">
 														<a class="btn" onclick="openedtw('${salary.id}')">修改</a>&nbsp;&nbsp;
 														<a class="btn" onclick="delw(${salary.id});">删除</a>

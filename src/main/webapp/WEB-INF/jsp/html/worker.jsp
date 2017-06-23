@@ -82,7 +82,7 @@
 								<a class="btn btn-success" onclick="printed()">打印</a>
 							</div>
 							<div class="search">
-								<input type="text" id="search" placeholder="Search" value="${searchName }" class="seartext" />
+								<input type="text" id="search" placeholder="请输入姓名。。。" value="${searchName }" class="seartext" />
 								<a class="btn btn-success" onclick="searchInf()"  >搜索</a>
 							</div>
 							<div class="w">

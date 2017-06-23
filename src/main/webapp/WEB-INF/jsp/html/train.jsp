@@ -79,7 +79,7 @@
 							</div>
 							
 							<div class="search">
-								<input type="text" placeholder="Search"  value="${searchName }" id="searchTitle" class="seartext"/> <a class="btn btn-success" onclick="searchTrainTitle()" >搜索</a>
+								<input type="text" placeholder="请输入标题。。。"  value="${searchName }" id="searchTitle" class="seartext"/> <a class="btn btn-success" onclick="searchTrainTitle()" >搜索</a>
 							</div>
 							<div class="w">
 								<div class="span12">
@@ -241,7 +241,7 @@
 		}
 		
 			laydate({
-				elem: '#date'
+				elem: '#ntime'
 			});
 			
 		function addt(){
@@ -251,6 +251,25 @@
 			var description = $("#description").val();
 			var teacher = $("#teacher").val();
 			var time = $("#time").val();
+			
+			if(title==null || title==''){
+				
+				alert("标题不能为空！！");
+				return;
+			}else if(description==null || description==''){
+				
+				alert("内容不能为空！！");
+				return;
+			}else if(time==null || time==''){
+				
+				alert("时间不能为空！！");
+				return;
+			}else if(teacher==null || teacher==''){
+				
+				alert("时间不能为空！！");
+				return;
+			}
+			
 			
 			if(id==null || id==''){
 				location.href="inertTrain?title="+title+"&time="+time+"&teacher="+teacher+"&description="+description;

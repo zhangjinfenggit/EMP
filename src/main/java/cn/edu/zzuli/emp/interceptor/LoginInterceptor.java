@@ -21,7 +21,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 		String path = handler.toString().toLowerCase();
 
-		System.out.println(path);
+		System.err.println(path);
 		if (path.contains("login") || path.contains("css") || path.contains("scripts") || path.contains("images")
 				|| path.contains("styles") || path.contains("bootstrop") || path.contains("ckeditor")
 				|| path.contains("shownews") || path.contains("showtrain")) {

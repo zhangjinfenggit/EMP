@@ -27,6 +27,7 @@
 					<a class="loginout" href="logout"><img src="images/05.png" />&nbsp;&nbsp;退出</a>
 				</li>
 			</ul>
+		</div>
 
 		<div class="nav">
 			<ul class="breadcrumb">
@@ -35,7 +36,6 @@
 				<li class="active"></li>
 
 			</ul>
-
 		</div>
 		<div id="sysdate"></div>
 		<div class="container-fluid content">
@@ -73,14 +73,15 @@
 					<div class="container-fluid">
 						<div class="row-fluid">
 							<div class="add">
-								<a class="btn btn-success" onclick="openadd('新增公告')">新增</a>
+								<a class="btn btn-success" onclick="openaddNews()">新增</a>
 							</div>
 							<div class="search">
-								<input type="text" placeholder="Search" class="seartext" id="searchName" value="${searchName }" /> <a class="btn btn-success" onclick="searchNewsName()">搜索</a>
+								<input type="text" placeholder="请输入标题。。。" class="seartext" id="searchName" value="${searchName }" />
+								 <a class="btn btn-success" onclick="searchNewsName()">搜索</a>
 							</div>
 							<div class="w">
 								<div class="span12">
-									<table class="table table-condensed table-bordered table-hover tab">
+									<table  style="color: black;" class="table table-condensed table-bordered table-hover tab">
 										<thead>
 											<tr>
 												<th width="5%">序号</th>
@@ -90,26 +91,28 @@
 												<th width="15%">操作</th>
 											</tr>
 										</thead>
-									<c:forEach items="${newsList }" var="news" varStatus="status" >
-											<tbody id="tbody">
-												<tr>
-													<th width="5%">${status.index+1 }</th>
-													<td width="20%">${news.title }</td>
-													<td width="10%">${news.time }</td>
-													<td width="55%">${news.content }</td>
-													<td width="15%">
-														<a class="btn" onclick="openedtnews('${news.id}');">修改</a>&nbsp;&nbsp;
-														<a class="btn" onclick="opendelnews('${news.id}');">删除</a>
-													</td>
-												</tr>
-											</tbody>
-									</c:forEach>
+										<tbody id="tbody">
+											<c:forEach items="${newsList }" var="news" varStatus="status" >
+												
+														<tr>
+															<th width="5%">${status.index+1 }</th>
+															<td width="20%">${news.title }</td>
+															<td width="10%">${news.time }</td>
+															<td width="55%"><xmp>${news.content }</xmp></td>
+															<td width="15%">
+																<a class="btn" onclick="openedtnews('${news.id}');">修改</a>&nbsp;&nbsp;
+																<a class="btn" onclick="opendelnews('${news.id}');">删除</a>
+															</td>
+														</tr>
+													
+											</c:forEach>
+									 </tbody>
 									</table>
-									<div id="page" class="tr"></div>
 								</div>
 							</div>
 
-							<div id="addModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							
+							 <div id="addModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 									<h4 id="myModalLabel">新增公告</h4>
@@ -117,21 +120,23 @@
 								<div class="modal-body">
 									<form class="form-horizontal">
 										<div class="control-group">
-											<label class="control-label" for="ntitle">标题</label>
+											<label class="control-label" id="mytitle" for="title">标题</label>
 											<div class="controls">
 												<input type="text" id = "ntitle" name="title" placeholder="新闻公告主题">
 											</div>
 										</div>
 										<div class="control-group">
-											<label class="control-label" for="ntime">时间</label>
+											<label class="control-label" for="time">时间</label>
 											<div class="controls">
 												<input type="text" id="ntime" name="time" placeholder="">
 											</div>
 										</div>
 										<div class="control-group">
-											<label class="control-label" for="ncontent">内容</label>
+										<!--   -->
+											<label class="control-label" for="content">内容</label>
 											<div class="controls">
-												<textarea name="content" id="ncontent" style="height:200px;width:205px;resize: none;"></textarea>
+											<!--  -->
+											 	<textarea name="content" id="ncontent" style="height:200px;width:220px; "></textarea> 
 											</div>
 										</div>
 										<input type="hidden" id="nid" />
@@ -143,7 +148,7 @@
 									<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
 								</div>
 							</div>
-							
+								
 							<div id="adminModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top: 25%;">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -160,11 +165,11 @@
 										<div class="control-group">
 											<label class="control-label" for="time">密码</label>
 											<div class="controls">
-												<input type="password"  id="pwd" placeholder="">
+												<input type="password"  id="pwd" placeholder="请输入密码">
 											</div>
 										</div>
 									</form>
-								</div>
+								</div> 
 
 								<div class="modal-del-footer">
 									<button class="btn btn-primary" onclick="editPwd('${sessionScope.userLogin.account }')" >确认</button>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -214,43 +219,64 @@
 		<script src="scripts/behind.js"></script>
 		<script src="scripts/laydate.dev.js"></script>
 		<script type="text/javascript">
-			function editPwd(account){
-				var pwd = document.getElementById("pwd");
+		function editPwd(account){
+			var pwd = document.getElementById("pwd");
+			
+			location.href="updatePwd?account="+account+"&pwd="+pwd.value;
+		}
+		function searchNewsName(){
+			
+		var	title = $("#searchName").val();
+			location.href="jumpNews?title="+title;
+		}
+		function addnews(){
+			var title = $("#ntitle").val();
+			var content = $("#ncontent").val();
+			var time = $("#ntime").val();
+			var id = $("#nid").val();
+			
+			if(title==null || title==''){
 				
-				location.href="updatePwd?account="+account+"&pwd="+pwd.value;
+				alert("标题不能为空！！");
+				return;
+			}else if(content==null || content==''){
+				
+				alert("内容不能为空！！");
+				return;
+			}else if(time==null || time==''){
+				
+				alert("时间不能为空！！");
+				return;
 			}
-			function searchNewsName(){
-				
-			var	title = $("#searchName").val();
-				location.href="jumpNews?title="+title;
+			
+			if(id==null || id==''){
+				location.href="insertNews?title="+title+"&content="+content+"&time="+time;
+			}else{
+				location.href="updateNews?title="+title+"&content="+content+"&time="+time+"&id="+id;
 			}
-			function addnews(){
-				var title = $("#ntitle").val();
-				var content = $("#ncontent").val();
-				var time = $("#ntime").val();
-				var id = $("#nid").val();
-				
-				if(id==null || id==''){
-					location.href="insertNews?title="+title+"&content="+content+"&time="+time;
-				}else{
-					location.href="updateNews?title="+title+"&content="+content+"&time="+time+"&id="+id;
-				}
-				
-				
+			
+			
+		}
+		function openaddNews(){
+			
+			$("#mytitle").text("标题");
+			 $("#myModalLabel").val('新增公告');
+			
+			$("#addModal").modal("show"); 
+			
+			
+		}
+		function opendelnews(id){
+			
+			var v = confirm("你确定要删除么？");
+			if(v){
+				location.href="delNewsByid?id="+id;
 			}
-			function edtnews(){
-				
-			}
-			function opendelnews(id){
-				
-				var v = confirm("你确定要删除么？");
-				if(v){
-					location.href="delNewsByid?id="+id;
-				}
-			}
-			laydate({
-				elem: '#ntime'
-			});
+		}
+		
+		laydate({
+			elem: '#ntime'
+		});
 		</script>
 	</body>
 
