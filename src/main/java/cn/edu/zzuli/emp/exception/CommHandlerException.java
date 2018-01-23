@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 @ControllerAdvice
 public class CommHandlerException {
 
-	
+	//更新过的
 	@ExceptionHandler(value = Exception.class)
 	public ModelAndView showException(Exception e) {
 
